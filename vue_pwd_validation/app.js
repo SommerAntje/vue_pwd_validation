@@ -9,6 +9,9 @@ Vue.component('password-form', {
         <label for="name">Password</label>
         <input type="password" id="password" v-model="password" placeholder="password">
       </p>
+      <p>
+        <input type="submit" value="submit">
+      </p>
     </form>
   `,
     data() {
