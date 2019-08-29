@@ -1,4 +1,10 @@
 Vue.component('password-form', {
+    props: {
+        requirements: {
+            type: Array,
+            required: true
+        }
+    },
     template: `
     <form @submit.prevent="onSubmit">
       <p>
@@ -13,11 +19,32 @@ Vue.component('password-form', {
         <input type="submit" value="submit">
       </p>
     </form>
+     <password-validation></password-validation>
   `,
     data() {
         return {
             username: null,
             password: null
+        }
+    }
+})
+
+Vue.component('password-validation', {
+    template: `
+      <ol>
+        <li v-for="requirement in requirements">
+          {{requirement.text}}
+        </li>
+      </ol>
+  `,
+    data() {
+        return {
+            requirements: [
+                { text: 'A <b>lowercase letter</b>' },
+                { text: 'A <b>capital (uppercase)</b> ' },
+                { text: 'Minimum <b>8 characters</b>' },
+                { text: 'A <b>number or special character</b>' },
+            ]
         }
     }
 })
