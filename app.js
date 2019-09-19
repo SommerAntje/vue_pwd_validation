@@ -4,11 +4,11 @@ Vue.component('password-form', {
       <h1>Vue Password Strength Validation</h1>
       <label class="frmLabel" for="password">Password</label>
       <input placeholder="Enter your password" name="password" class="frmField" type="password" @input="password_check" v-model="message"/>
-      <p class="frmValidation" :class="{'frmValidation--passed' : message.length > 7}"><i class="frmIcon fas" :class="message.length > 7 ? 'fa-check' : 'fa-times'"></i> Longer than 7 characters</p>
+      <p class="frmValidation" :class="{'frmValidation--passed' :message.length > 7}"><i class="frmIcon fas" :class="message.length > 7 ? 'fa-check' : 'fa-times'"></i> Longer than 7 characters</p>
       <p class="frmValidation" :class="{'frmValidation--passed' :has_uppercase }"><i class="frmIcon fas" :class="has_uppercase ? 'fa-check' : 'fa-times'"></i> Has a capital letter</p>
       <p class="frmValidation" :class="{'frmValidation--passed' :has_lowercase }"><i class="frmIcon fas" :class="has_lowercase ? 'fa-check' : 'fa-times'"></i> Has a lowercase letter</p>
-      <p class="frmValidation" :class="{'frmValidation--passed' : has_number }"><i class="frmIcon fas" :class="has_number ? 'fa-check' : 'fa-times'"></i> Has a number</p>
-      <p class="frmValidation" :class="{'frmValidation--passed' : has_special }"><i class="frmIcon fas" :class="has_special ? 'fa-check' : 'fa-times'"></i> Has a special character</p>
+      <p class="frmValidation" :class="{'frmValidation--passed' :has_number }"><i class="frmIcon fas" :class="has_number ? 'fa-check' : 'fa-times'"></i> Has a number</p>
+      <p class="frmValidation" :class="{'frmValidation--passed' :has_special }"><i class="frmIcon fas" :class="has_special ? 'fa-check' : 'fa-times'"></i> Has a special character</p>
     </form>
   `,
     data() {
