@@ -39,3 +39,15 @@ h1 {
 .frmValidation {
     font-size: 13px;
 }
+
+.frmValidation--passed {
+    color: #717b85;
+}
+
+.frmIcon {
+    color: #EB0029;
+}
+
+.frmValidation--passed .frmIcon {
+    color: #0fa140;
+}
