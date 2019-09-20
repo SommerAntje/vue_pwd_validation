@@ -2,7 +2,7 @@ Vue.component('password-form', {
     template: `
     <form @submit.prevent="onSubmit">
       <h1>Vue Password Strength Validation</h1>
-      <label class="frmLabel" for="password">Password <i @click="password_toggle" class="frmInputIcon fas" :class="is_visible ? 'fa-eye-slash' : 'fa-eye'"></i></label>
+      <label class="frmLabel" for="password">Password <i @click="password_toggle" class="frmInputIcon fas" :class="[passwordVisibility]"></i></label>
       <input :placeholder="[placeholder]" name="password" class="frmField" :type="passwordFieldType" @input="password_check" v-model="password"/>
       <p class="frmValidation" :class="{'frmValidation--passed' :password.length > 7}"><i class="frmIcon fas" :class="password.length > 7 ? 'fa-check' : 'fa-times'"></i> Longer than 7 characters</p>
       <p class="frmValidation" :class="{'frmValidation--passed' :has_uppercase }"><i class="frmIcon fas" :class="has_uppercase ? 'fa-check' : 'fa-times'"></i> Has a capital letter</p>
@@ -26,6 +26,9 @@ Vue.component('password-form', {
     computed: {
         placeholder() {
             return 'Enter your password'
+        },
+        passwordVisibility() {
+            return this.is_visible ? 'fa-eye-slash' : 'fa-eye'
         }
     },
     methods: {
