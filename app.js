@@ -2,9 +2,8 @@ Vue.component('password-form', {
     template: `
     <form @submit.prevent="onSubmit">
       <h1>Vue Password Strength Validation</h1>
-      <label class="frmLabel" for="password">Password</label>
-      <input placeholder="Enter your password" name="password" class="frmField" :type="passwordFieldType" @input="password_check" v-model="password"/>
-      <i @click="password_toggle" class="frmInputIcon fas" :class="is_visible ? 'fa-eye-slash' : 'fa-eye'"></i>
+      <label class="frmLabel" for="password">Password <i @click="password_toggle" class="frmInputIcon fas" :class="is_visible ? 'fa-eye-slash' : 'fa-eye'"></i></label>
+      <input :placeholder="[placeholder]" name="password" class="frmField" :type="passwordFieldType" @input="password_check" v-model="password"/>
       <p class="frmValidation" :class="{'frmValidation--passed' :password.length > 7}"><i class="frmIcon fas" :class="password.length > 7 ? 'fa-check' : 'fa-times'"></i> Longer than 7 characters</p>
       <p class="frmValidation" :class="{'frmValidation--passed' :has_uppercase }"><i class="frmIcon fas" :class="has_uppercase ? 'fa-check' : 'fa-times'"></i> Has a capital letter</p>
       <p class="frmValidation" :class="{'frmValidation--passed' :has_lowercase }"><i class="frmIcon fas" :class="has_lowercase ? 'fa-check' : 'fa-times'"></i> Has a lowercase letter</p>
@@ -22,6 +21,11 @@ Vue.component('password-form', {
             has_uppercase: false,
             has_special: false,
             show_password: false
+        }
+    },
+    computed: {
+        placeholder() {
+            return 'Enter your password'
         }
     },
     methods: {
