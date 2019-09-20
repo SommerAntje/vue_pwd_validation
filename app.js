@@ -3,8 +3,8 @@ Vue.component('password-form', {
     <form @submit.prevent="onSubmit">
       <h1>Vue Password Strength Validation</h1>
       <label class="frmLabel" for="password">Password</label>
-      <input placeholder="Enter your password" name="password" class="frmField" type="password" @input="password_check" v-model="password"/>
-      <i @click="password_toggle" class="fas fa-eye"></i>
+      <input placeholder="Enter your password" name="password" class="frmField" :type="passwordFieldType" @input="password_check" v-model="password"/>
+      <i @click="password_toggle" class="frmInputIcon fas fa-eye"></i>
       <p class="frmValidation" :class="{'frmValidation--passed' :password.length > 7}"><i class="frmIcon fas" :class="password.length > 7 ? 'fa-check' : 'fa-times'"></i> Longer than 7 characters</p>
       <p class="frmValidation" :class="{'frmValidation--passed' :has_uppercase }"><i class="frmIcon fas" :class="has_uppercase ? 'fa-check' : 'fa-times'"></i> Has a capital letter</p>
       <p class="frmValidation" :class="{'frmValidation--passed' :has_lowercase }"><i class="frmIcon fas" :class="has_lowercase ? 'fa-check' : 'fa-times'"></i> Has a lowercase letter</p>
@@ -15,6 +15,7 @@ Vue.component('password-form', {
     data() {
         return {
             password: '',
+            passwordFieldType: 'text',
             has_number: false,
             has_lowercase: false,
             has_uppercase: false,
@@ -30,7 +31,12 @@ Vue.component('password-form', {
             this.has_special = /[!@#\$%\^\&*\)\(+=._-]/.test(this.password);
         },
         password_toggle() {
-
+            if (this.passwordFieldType === 'password') {
+                this.passwordFieldType = 'text'
+            } else {
+                this.passwordFieldType = 'password'
+            }
+            console.log('type:' + this.passwordFieldType);
         }
     }
 })
